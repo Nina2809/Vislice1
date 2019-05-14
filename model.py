@@ -9,8 +9,9 @@ PORAZ = 'x'
 
 class Igra:
     def __init__(self, geslo, crke=[]):
-        self.geslo = geslo
+        self.geslo = geslo.upper()
         self.crke = crke
+
 
 def pravilne_crke(self):
     return [crka for crka in self.crke if crka in self.geslo]    
@@ -28,7 +29,7 @@ def zmaga(self):
     return True
 
 def poraz(self):
-    return self.stevilo_napak > STEVILO_DOVOLJENIH_NAPAK
+    return self.stevilo_napak() > STEVILO_DOVOLJENIH_NAPAK
 
 def pravilni_del_gesla(self):
     izpis = ''
@@ -57,3 +58,12 @@ def ugibaj(self, crka):
         elif velika_crka in self.napacne_crke():
                 return NAPACNA_CRKA
 
+bazen_besed = []
+with open('besede.txt') as f:
+    for vrstica in f:
+        bazen_besed.append(vrstica.strip())
+
+def nova_igra():
+    import random
+    izbrana_beseda = random.choice(bazen_besed)
+    return igra = Igra(izbrana_beseda)
