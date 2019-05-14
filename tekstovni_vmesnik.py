@@ -15,22 +15,23 @@ ugibaš še {stevilo}.krat.
 def izpis_zmage(igra):
     return "Čestitke! uganil/a si geslo {}.".format(igra)
 
-def izpis_parza(igra):
+def izpis_poraza(igra):
     return "Več sreče prihodnič!"
 
-def zahtevaj_vnos()
+def zahtevaj_vnos():
     return input ("Ugibaj: ")
 
 def pozeni_vmesnik():
     igra = model.nova_igra()
-        while True:
+    while True:
         print (izpis_igre(igra))
         crka = zahtevaj_vnos()
         stanje = igra.ugibaj(crka)
         if stanje == model.ZMAGA:
-            print(uzpis_zmage(igra))
+            print(izpis_zmage(igra))
+            break
         elif stanje == model.PORAZ:
             print(izpis_poraza(igra))
-            break
-        
-pozeni_vmesnik
+            break   
+
+pozeni_vmesnik()

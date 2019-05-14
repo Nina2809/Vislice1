@@ -66,4 +66,4 @@ with open('besede.txt') as f:
 def nova_igra():
     import random
     izbrana_beseda = random.choice(bazen_besed)
-    return igra = Igra(izbrana_beseda)
+    return Igra(izbrana_beseda)
