@@ -4,6 +4,7 @@ PRAVILNA_CRKA = '+'
 PONOVLJENA_CRKA = 'o'
 NAPACNA_CRKA = '-'
 
+ZACETEK = 's'
 ZMAGA = 'w'
 PORAZ = 'x'
 
@@ -11,6 +12,8 @@ class Igra:
     def __init__(self, geslo, crke=[]):
         self.geslo = geslo.upper()
         self.crke = crke
+
+    # int vedno definiras ko odpres vlass, vse te sprem self. sahranis tuki ni dobra praksa kjer koli umes
 
 
     def pravilne_crke(self):
@@ -67,3 +70,31 @@ def nova_igra():
     import random
     izbrana_beseda = random.choice(bazen_besed)
     return Igra(izbrana_beseda)
+
+class Vislice:
+    def __init__(self):
+        #pogosta napaka pr intu napisat self _ metoda
+        self.igre = {}
+
+    def prost_id_igre(self):
+        return len(self.igre)
+
+    def nova_igra(self):
+        id = self.prost_id_igre()
+        igra = nova_igra()
+        self.igre[id] = (igra, ZACETEK)
+        # vislice sef ko hocm igrt novo igro poklicem to igro
+        return id
+        
+    def ugibaj(self, id_igre, crka):
+        (igra,stanje) = self.igre[id_igre]
+        # dobimo katero stevilko igre klicemo (par)
+        novo_stanje = igra.ugibaj(crka)
+        # to mi vraca zmaga,...
+        self.igre[id_igre] = (igra, novo_stanje)
+
+
+
+
+
+
